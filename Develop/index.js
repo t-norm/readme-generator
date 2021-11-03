@@ -1,12 +1,14 @@
 // TODO: Include packages needed for this application
+const fs = require('fs');
 const inquirer = require("inquirer");
+const {generateMarkdown} = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
     return inquirer.prompt([
         {
             type: "input",
-            name: "projectTitle",
+            name: "title",
             message: "Project title: ",
         },
         {
@@ -26,7 +28,7 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "contributing",
+            name: "contribution",
             message: "Contribution guidelines: "
         },
         {
@@ -39,13 +41,10 @@ const promptUser = () => {
             name: "license",
             message: "What license should this project use?",
             choices: [
-                "Apache",
-                "Academic",
-                "GNU",
-                "ISC",
                 "MIT",
-                "Mozilla",
-                "Open"
+                "ISC",
+                "GNU GPL",
+                "Unlicensed"
             ]
         },
         {
@@ -60,10 +59,36 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "questions",
+            name: "reachout",
             message: "Additional insturctions for questions/reach out: "
         },
-    ]);
-} 
+    ])
+    .then(userInput => {
+        return userInput;
+    });
+};
 
-promptUser()
+// TODO: Create a function to write README file
+function writeFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if(err) throw err;
+        console.log('README successfully created.')
+    })
+};
+
+// TODO: Create a function to initialize app
+function init() {
+    promptUser() // Prompt user to get input data
+        .then(userInput => {
+            return generateMarkdown(userInput);
+        })
+        .then(markdown => {
+            writeFile('./dist/README.md', markdown);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+// Function call to initialize app
+init();
