@@ -25,6 +25,16 @@ const promptUser = () => {
             message: "Project usage: "
         },
         {
+            type: "input",
+            name: "contributing",
+            message: "Contribution guidelines: "
+        },
+        {
+            type: "input",
+            name: "tests",
+            message: "Project test instructions: "
+        },
+        {
             type: "list",
             name: "license",
             message: "What license should this project use?",
@@ -40,29 +50,19 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "contributing",
-            message: "Project contributors: "
-        },
-        {
-            type: "input",
-            name: "tests",
-            message: "Project test description: "
-        },
-        {
-            type: "input",
-            name: "questions",
-            message: "Questions section: "
-        },
-        {
-            type: "input",
             name: "username",
-            message: "Enter your GitHub username: "
+            message: "Enter your GitHub username (for questions/reachout section): "
         },
         {
             type: "input",
             name: "email",
-            message: "Enter your email: "
-        }
+            message: "Enter your email (for questions/reachout section): "
+        },
+        {
+            type: "input",
+            name: "questions",
+            message: "Additional insturctions for questions/reach out: "
+        },
     ]);
 } 
 
