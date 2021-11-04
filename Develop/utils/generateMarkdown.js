@@ -2,10 +2,10 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license !== 'Unlicensed') {
-    return `![Project License Badge](https://img.shields.io/badge/license-${license}-blue)`
+    return `<p align="center"><img src="https://img.shields.io/badge/License-${license}-blue?style=plastic" /></p>`
   } else {
-    return `![Project License Badge](https://img.shields.io/badge/license-Unlicensed-blue)`;
-  }
+    return `<p align="center"><img src="https://img.shields.io/badge/License-${license}-red?style=plastic" /></p>`
+  };
 };
 
 // TODO: Create a function that returns the license link
@@ -16,7 +16,7 @@ function renderLicenseLink(data) {
       return `
       > ### MIT License
       > 
-      > Copyright (c) [2021] [${data.user}]
+      > Copyright (c) [2021] [${data.username}]
       > 
       > __Permission is hereby granted, free of charge, to any person obtaining a copy__
       > __of this software and associated documentation files (the "Software"), to deal__
@@ -40,7 +40,7 @@ function renderLicenseLink(data) {
       return `
       > ### ISC License (ISC)
       > 
-      > Copyright [2021] [${data.user}]
+      > Copyright [2021] [${data.username}]
       > 
       > __Permission to use, copy, modify, and/or distribute this software for__
       > __any purpose with or without fee is hereby granted, provided that the__ 
@@ -257,7 +257,6 @@ function renderLicenseLink(data) {
 // If there is no license, return an empty string
 function renderLicenseSection(data) {
   return `
-  # License:
   ${renderLicenseBadge(data)}
 
   ${renderLicenseLink(data)}
@@ -267,21 +266,21 @@ function renderLicenseSection(data) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  # <h1 align="center">${data.projectTitle}</h1>
+  # <h1 align="center">${data.title}</h1>
 
-  ![badge](https://img.shields.io/badge/license-${data.license}-blue)
+  ${renderLicenseBadge(data.license)}
 
   # Description:
   ${data.description}
 
-  #Table of Contents:
+  # Table of Contents:
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contribution](#contribution)
   - [Tests](#tests)
   - [License](#license)
-  - [Reach Out](#reachout)
+  - [Questions](#questions)
 
   # Installation:
   ${data.installation}
@@ -289,20 +288,21 @@ function generateMarkdown(data) {
   # Usage:
   ${data.usage}
 
-  #Contribution:
+  # Contribution:
   ${data.contribution}
 
-  #Tests:
+  # Tests:
   ${data.tests}
 
+  # License:
   ${renderLicenseSection(data.license)}
 
-  #Reach Out:
-  ${data.reachout}
+  # Questions:
+  ${data.questions}
 
-  :octocat: Find me on GitHub: [${data.username}](https://github.com/${data.username})
+  Find me on GitHub: [${data.username}](https://github.com/${data.username})
   
-  Email me with any questions: ${data.email}<br /><br />
+  Email me with any questions: ${data.email}
 `;
 };
 

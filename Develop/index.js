@@ -59,7 +59,7 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "reachout",
+            name: "questions",
             message: "Additional insturctions for questions/reach out: "
         },
     ])
