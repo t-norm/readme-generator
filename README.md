@@ -22,6 +22,7 @@
   4. See usage for instructions on how to generate your README.md file.
 
   # Usage:
+  Demo video: https://watch.screencastify.com/v/Hs0XYHXcOFmnsxQwcMgE
   Ex: This README was made with the application found within this repository.
   1. After following installation insturctions, enter the following command into your terminal: node index.js
   2. Your terminal will begin asking you questions to populate your README.md file.
